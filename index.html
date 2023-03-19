@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css"/>
+  <title>Student Grade Stats</title>
+</head>
+<body>
+  <main>
+    <h1>Bimal Pudasaini - Student Grade Stats</h1>
+
+    <form id="studentGradeForm" action="/form-submitted.html">
+      <label for="name">Name:*</label>
+      <input type="text" id="name"><br>
+
+      <label for="grade">Grade:*</label>
+      <input type="text" id="grade"><br>
+
+      <input type="submit" id="addGrade" value="Add Grade"><br>
+    </form>
+
+    <br>
+
+    <input type="checkbox" id="showTopGrade" value="top-grade">
+    <label for="showTopGrade">Show Top Grade</label><br>
+
+    <input type="checkbox" id="showAverageGrade" value="average-grade">
+    <label for="showAverageGrade">Show Average Grade</label><br>
+
+    <input type="button" id="toggleStats" value="Show Stats">
+    <input type="button" id="resetGrades" value="Reset Grades">
+
+    <br>
+
+    <section id="noGrades" class="show">
+      <h2>No Grades Yet</h2>
+    </section>
+
+    <section id="grades">
+      <h2>Student Grades:</h2>
+    </section>
+
+    <section id="stats">
+      <h2>Grade Stats:</h2>
+    </section>
+  </main>
+
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

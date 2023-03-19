@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Grade Calculator</title>
+</head>
+<body>
+	<h1>Student Grade Calculator</h1>
+	<form id="grade-form">
+		<label for="name">Student Name:</label>
+		<input type="text" id="name" required><br><br>
+
+		<label for="grade">Grade:</label>
+		<input type="number" id="grade" required min="0" max="100"><br><br>
+
+		<button type="submit">Add Grade</button>
+	</form>
+
+	<h2>Grades:</h2>
+	<ul id="grade-list"></ul>
+
+	<p>Average Grade: <span id="average-grade"></span></p>
+	<p>Lowest Grade: <span id="lowest-grade"></span></p>
+	<p>Highest Grade: <span id="highest-grade"></span></p>
+
+	<script>
+		const gradeForm = document.querySelector('#grade-form');
+		const gradeList = document.querySelector('#grade-list');
+		const averageGrade = document.querySelector('#average-grade');
+		const lowestGrade = document.querySelector('#lowest-grade');
+		const highestGrade = document.querySelector('#highest-grade');
+
+		let grades = [];
+
+		function addGrade(event) {
+			event.preventDefault();
+
+			const nameInput = document.querySelector('#name');
+			const gradeInput = document.querySelector('#grade');
+
+			const name = nameInput.value;
+			const grade = parseInt(gradeInput.value);
+
+			if (isNaN(grade) || grade < 0 || grade > 100) {
+				alert('Please enter a valid grade (0-100)');
+				return;
+			}
+
+			grades.push({
+				name: name,
+				grade: grade
+			});
+
+			displayGrades();
+			displayStatistics();
+			nameInput.value = '';
+			gradeInput.value = '';
+		}
+
+		function displayGrades() {
+			gradeList.innerHTML = '';
+
+			for (let i = 0; i < grades.length; i++) {
+				const li = document.createElement('li');
+				const text = document.createTextNode(`${grades[i].name}: ${grades[i].grade}`);
+				li.appendChild(text);
+				gradeList.appendChild(li);
+			}
+		}
+
+		function displayStatistics() {
+			let sum = 0;
+			let min = grades[0].grade;
+			let max = grades[0].grade;
+
+			for (let i = 0; i < grades.length; i++) {
+				sum += grades[i].grade;
+
+				if (grades[i].grade < min) {
+					min = grades[i].grade;
+				}
+
+				if (grades[i].grade > max) {
+					max = grades[i].grade;
+				}
+			}
+
+			const average = sum / grades.length;
+
+			averageGrade.innerText = average.toFixed(2);
+			lowestGrade.innerText = min;
+			highestGrade.innerText = max;
+		}
+
+		gradeForm.addEventListener('submit', addGrade);
+	</script>
+</body>
+</html>
